@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import ListaLibros from './components/ListaLibros';
+import { Libros } from './data/Libros';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AcercaDe from './components/AcercaDe';
+import PaginaNoEncontrada from './components/PaginoNoEncontrada';
+import Menu from './components/Menu';
+import DetalleLibro from './components/DetalleLibro';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    
+    <div className="container"/>
+      <BrowserRouter>
+      <Menu/>
+        <Routes>
+          <Route path="/" element={<ListaLibros Libros={Libros} />} />
+          <Route path="/Libros/:id" element={<DetalleLibro Libros={Libros} />}/>;
+          <Route path="/acerca-de" element={<AcercaDe />} />
+          <Route path="*" elemente={<PaginaNoEncontrada />} />
+        </Routes>
+      </BrowserRouter>
+      <div/>
+    </>
   );
 }
 
